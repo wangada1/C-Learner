@@ -1,0 +1,30 @@
+//美团笔试 切木块
+#include<stdlib.h>
+#include<stdio.h>
+#include<stdbool.h>
+
+int main(){
+    //问题描述：输入长度a b c和最大切刀数n，输出可以形成三角形的好组合数目
+    int count=0;
+    int a=0;
+    int b=0;
+    int c=0;
+    int n=0;
+    printf("请输入木条长度 a b c和最大切刀数n，以空格分割");
+    scanf("%d %d %d %d",&a,&b,&c,&n);
+    bool istriangle(int k1,int k2,int k3){
+        return (k1+k2>k3 && k1+k2>k3 && k2+k3>k1);
+    };
+//原题目没有考虑好组合内部可能重合的情况，也就是说，只要切法不同的好组合，则认为是不同的好组合
+    void dp(int l1,int l2,int l3,int k){
+        if(l1<=0 || l2<=0 || l3<=0) return;
+        if(istriangle(l1,l2,l3)) {count++;};
+        if(k==n+1) return;
+        dp(l1-k,l2,l3,k+1);
+        dp(l1,l2-k,l3,k+1);
+        dp(l1,l2,l3-k,k+1);
+    };
+    dp(a,b,c,1);
+    printf("好组合数目是%d",count);
+    return 0;
+}
