@@ -1,0 +1,16 @@
+ void quicksort(int* num,int l, int r){
+        if(l>=r) return ;
+        int key = num[l];
+        int i =l;
+        int j =r;
+        while(j>i){
+            while(j>i && num[j]>=key) j--;
+            if(j>i){num[i]=num[j];i++;}
+            while(j>i &&num[i]<=key) i++;
+            if(j>i){num[j]=num[i];j--;}
+        };
+        num[i]=key;
+        quicksort(num,l,i-1);
+        quicksort(num,i+1,r);
+        return ;
+    }
