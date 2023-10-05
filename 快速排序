@@ -1,4 +1,5 @@
- void quicksort(int* num,int l, int r){
+//左边开始
+void quicksort(int* num,int l, int r){
         if(l>=r) return ;
         int key = num[l];
         int i =l;
@@ -8,6 +9,30 @@
             if(j>i){num[i]=num[j];i++;}
             while(j>i &&num[i]<=key) i++;
             if(j>i){num[j]=num[i];j--;}
+        };
+        num[i]=key;
+        quicksort(num,l,i-1);
+        quicksort(num,i+1,r);
+        return ;
+    }
+
+//三值中间开始
+  void quicksort(int* num,int l, int r){
+        if(l>=r) return ;
+        int i =l;
+        int j =r;
+        int mid = l + (r-l)/2;
+        int mid_true ;
+        if((num[mid]-num[l])*(num[mid]-num[r])<0) {mid_true = mid;}
+        else if((num[l]-num[mid])*(num[l]-num[r])<0) {mid_true = l;}
+        else {mid_true = r;};
+        int key = num[mid_true];
+        num[mid_true] = num[l];//此时必须把l的值保存到mid，否则会丢失一个值
+        while(j>i){
+            while(j>i && num[j]>=key) j--;
+            if(j>i){num[i]=num[j];}
+            while(j>i &&num[i]<=key) i++;
+            if(j>i){num[j]=num[i];}
         };
         num[i]=key;
         quicksort(num,l,i-1);
