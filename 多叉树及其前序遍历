@@ -1,0 +1,28 @@
+//多叉树及其前序遍历
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct TreeNode{
+    int data;
+    struct TreeNode *firstchild;
+    struct TreeNode *Nextbrother;
+}
+
+struct TreeNode* CreateNode(int value){
+    struct TreeNode* node = malloc(sizeof(struct TreeNode));
+    node ->data = value;
+    node ->firstchild = NULL;
+    node -Nextbrother = NULL;
+    return node;
+}
+
+void PreOrder(struct TreeNode* root){
+  if(root != NULL){
+  printf("%d",root ->data);
+}
+  struct TreeNode* child = root -> firstchild;
+  while(child!=NULL){
+  PreOrder(child);
+  child = child->Nextbrother;
+}
